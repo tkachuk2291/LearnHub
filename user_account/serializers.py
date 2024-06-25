@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 
 from user_account.models import User
 from user_account.validators import password_validate

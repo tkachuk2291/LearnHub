@@ -11,7 +11,7 @@ from user_account.models import User
 from user_account.serializers import UserSerializer, TokenObtainPairSerializer
 
 
-class UserWineViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     queryset = User.objects.all()
     model = User
