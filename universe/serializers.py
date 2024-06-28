@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from universe.models import Quizlet, Planet, Question, UserAnswer, Answer
+from universe.models import Quizlet, Planet, Question, UserAnswer, Answer, Alphabet
 
 
 class QuizletSerializer(serializers.ModelSerializer):
@@ -18,7 +18,10 @@ class PlanetSerializer(serializers.ModelSerializer):
 class AnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Answer
-        fields = ('id', "question", 'answer', "is_correct" , "planet")
+        fields = ('id', "question", 'answer', "is_correct", "planet", "audio_file")
+
+    def perform_create(self, serializer):
+        serializer.save()
 
 
 class QuestionSerializer(serializers.ModelSerializer):
@@ -26,7 +29,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ('id', "question", "quizlet", "planet")
+        fields = ('id', "question", "quizlet", "planet", "image_upload")
 
 
 class QuestionWithAnswerSerializer(serializers.ModelSerializer):
@@ -41,3 +44,21 @@ class UserAnswerSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserAnswer
         fields = ('id', "user", "question", "answer")
+
+
+class ImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
+        fields = ("id", "image_upload",)
+
+
+class AudioFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Answer
+        fields = ("id", "audio_file",)
+
+
+class AlphabetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alphabet
+        fields = ("id", "char", "audio_file", "image_upload")
