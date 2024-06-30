@@ -34,10 +34,11 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 class QuestionWithAnswerSerializer(serializers.ModelSerializer):
     answers = AnswerSerializer(many=True)
+    quizlet = QuizletSerializer()
 
     class Meta:
         model = Question
-        fields = ('id', "question", "quizlet", "answers")
+        fields = ('id', "question","image_upload", "quizlet", "answers")
 
 
 class UserAnswerSerializer(serializers.ModelSerializer):
