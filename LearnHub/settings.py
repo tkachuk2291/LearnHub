@@ -26,7 +26,8 @@ SECRET_KEY = os.environ.get('USERS_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["locallhost", "http://192.168.56.1:3000/" , "127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["locallhost", "http://192.168.56.1:3000/", "127.0.0.1", "1b73-176-37-22-78.ngrok-free.app"]
 
 # Application definition
 
@@ -36,7 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "django.contrib.staticfiles", 'user_account', "rest_framework", "rest_framework_simplejwt", "universe", "storages", "corsheaders"
+    "django.contrib.staticfiles", 'user_account', "rest_framework", "rest_framework_simplejwt", "universe", "storages",
+    "corsheaders"
 ]
 
 MIDDLEWARE = [
@@ -127,7 +129,9 @@ AUTHENTICATION_BACKENDS = ['user_account.auth_backends.EmailBackend']
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 1
 }
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
