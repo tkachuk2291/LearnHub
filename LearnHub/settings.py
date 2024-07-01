@@ -27,6 +27,7 @@ SECRET_KEY = os.environ.get('USERS_SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS = True
 # ALLOWED_HOSTS = ["locallhost", "http://192.168.56.1:3000/", "127.0.0.1", "1b73-176-37-22-78.ngrok-free.app"]
 
 # Application definition
@@ -148,3 +149,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOWED_ORIGINS = [
 #     "http://127.0.0.1:8001/",
 # ]
+
+
